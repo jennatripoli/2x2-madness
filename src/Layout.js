@@ -117,6 +117,7 @@ export const layout = {
         position: 'relative', 
         top: '7em', 
         padding: '0.25em', 
+        paddingTop: '0.5em',
         marginLeft: '0.6em', 
         marginRight: '0.6em', 
         outline: '0.2em dotted white', 
@@ -124,7 +125,6 @@ export const layout = {
         borderRadius: '2em', 
         width: '4vw', 
         height: '4vw', 
-        backgroundColor: 'transparent', 
         fill: 'white'
     }
 }
