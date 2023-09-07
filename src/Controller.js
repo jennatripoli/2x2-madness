@@ -1,5 +1,5 @@
-export function select(model, coordinates) {
-    model.select(coordinates)
+export function select(model, coordinates, scale) {
+    model.select(coordinates, scale)
     return model
 }
 

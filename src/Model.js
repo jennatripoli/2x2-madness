@@ -4,8 +4,8 @@ const BOXSIZE = 100
 const OFFSET = 5
 const RADIUS = 15
 
-var moves = 0
-var selectedGroup = null
+let moves = 0
+let selectedGroup = null
 
 export class Square {
     // create square with a row, column, and color
@@ -69,7 +69,7 @@ export class Group {
 
     // return true if all squares in group are the same color
     isSameColor() {
-        return (this.s1.color != 'white' && this.s1.color == this.s2.color == this.s3.color == this.s4.color)
+        return (this.s1.color != 'white' && this.s1.color == this.s2.color && this.s1.color == this.s3.color && this.s1.color == this.s4.color)
     }
 
     // return true if all squares in group are removes
@@ -120,15 +120,15 @@ export class Puzzle {
     }
 
     // select a group based on puzzle size and mouse click coordinates
-    select(nc, coordinates) {
+    select(nc, coordinates, scale) {
         let centers = []
-        let offsetX = (6 - nc) / 2 * BOXSIZE + OFFSET
+        let offsetX = ((6 - nc) / 2 * BOXSIZE + OFFSET)
         let sq = computeSquare(this.squares[0][0])
-        for (let i = 0; i < nc - 1; i++) centers.push(sq.x + offsetX + sq.size + OFFSET + (i * BOXSIZE))
+        for (let i = 0; i < nc - 1; i++) centers.push((sq.x + offsetX + sq.size + OFFSET + (i * BOXSIZE)) * scale)
 
         for (let r = 0; r < centers.length; r++) {
             for (let c = 0; c < centers.length; c++) {
-                if (coordinates.x > centers[c] - RADIUS && coordinates.x < centers[c] + RADIUS && coordinates.y > centers[r] - RADIUS && coordinates.y < centers[r] + RADIUS) {
+                if (coordinates.x > centers[c] - RADIUS*scale && coordinates.x < centers[c] + RADIUS*scale && coordinates.y > centers[r] - RADIUS*scale && coordinates.y < centers[r] + RADIUS*scale) {
                     for (let sr = 0; sr < this.nr; sr++) {
                         for (let sc = 0; sc < this.nc; sc++) {
                             this.squares[sr][sc].selected = false
@@ -172,7 +172,8 @@ export class Model {
         this.puzzle = new Puzzle(this.nr, this.nc, this.bs)
     }
 
-    select(coordinates) { this.puzzle.select(this.nc, coordinates) }
+    select(coordinates, scale) { this.puzzle.select(this.nc, coordinates, scale) }
     rotate(direction) { this.puzzle.rotate(direction) }
     getMoves() { return moves }
+    setMoves(value) { moves = value }
 }

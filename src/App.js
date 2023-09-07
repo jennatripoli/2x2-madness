@@ -20,11 +20,12 @@ function App() {
 
   // select configuration, reset configuration, and request redraw
   const resetConfigurationController = (configuration) => {
-    currentConfiguration = configuration
     let newModel = null
     if (configuration == 4) newModel = new Model(configuration_1)
     else if (configuration == 5) newModel = new Model(configuration_2)
     else if (configuration == 6) newModel = new Model(configuration_3)
+    currentConfiguration = configuration
+    newModel.setMoves(0)
     setModel(newModel)
     forceRedraw(redraw + 1)
   }
@@ -33,7 +34,7 @@ function App() {
   const selectGroupController = (e) => {
     let rect = canvasRef.current.getBoundingClientRect()
     let coordinates = { x: e.clientX - rect.left, y: e.clientY - rect.top }
-    let newModel = select(model, coordinates)
+    let newModel = select(model, coordinates, canvasRef.current.getBoundingClientRect().width / 610)
     setModel(newModel)
     forceRedraw(redraw + 1)
   }
@@ -44,8 +45,6 @@ function App() {
     setModel(newModel)
     forceRedraw(redraw + 1)
   }
-
-  // <label style={layout.rotateTitle}>Rotate</label>
 
   return (
     <div className='App'>
