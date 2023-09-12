@@ -1,2 +1,2 @@
-# 2x2-madness
- 
+# 2x2 Madness
+2x2 Madness is a puzzle game with an N x N square grid of squares that may have a color. Within the board, there is a small circle at the center of each 2x2 group of squares. The player can click this circle to select the corresponding group. Groups can be rotated either clockwise or counterclockwise to effectively rotate the colors in the group. If the player selects a group where all of the squares are the same color, the colors in that group will be removed. The goal of the game is to remove all colors from the board.
