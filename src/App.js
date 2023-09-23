@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { configuration_1, configuration_2, configuration_3 } from './Configurations.js'
+import { config_4x4, config_5x5, config_6x6 } from './configs.js'
 import { redrawCanvas } from './Boundary.js'
 import { Model } from './Model.js'
 import { select, rotate } from './Controller.js'
@@ -9,7 +9,7 @@ import { layout } from './Layout.js';
 let currentConfiguration = 4
 
 function App() {
-  const [model, setModel] = React.useState(new Model(configuration_1))
+  const [model, setModel] = React.useState(new Model(config_4x4))
   const canvasRef = React.useRef(null)
 
   // request redraw after model change
@@ -21,9 +21,9 @@ function App() {
   // select configuration, reset configuration, and request redraw
   const resetConfigurationController = (configuration) => {
     let newModel = null
-    if (configuration == 4) newModel = new Model(configuration_1)
-    else if (configuration == 5) newModel = new Model(configuration_2)
-    else if (configuration == 6) newModel = new Model(configuration_3)
+    if (configuration == 4) newModel = new Model(config_4x4)
+    else if (configuration == 5) newModel = new Model(config_5x5)
+    else if (configuration == 6) newModel = new Model(config_6x6)
     currentConfiguration = configuration
     newModel.setMoves(0)
     setModel(newModel)
