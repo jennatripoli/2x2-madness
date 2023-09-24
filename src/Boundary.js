@@ -2,9 +2,6 @@ const BOXSIZE = 100
 const OFFSET = 5
 const RADIUS = 15
 
-let winMoveCount = 0
-let removedSquares = 0
-
 export class SquareCalc {
     // create a square with position and size
     constructor(x, y, size) {
@@ -65,16 +62,7 @@ export function redrawCanvas(model, canvasObj) {
         }
     }
 
-    removedSquares = 0
-    for (let r = 0; r < nr; r++) {
-        for (let c = 0; c < nc; c++) {
-            if (model.puzzle.squares[r][c].color == 'white') removedSquares++
-        }
-    }
-
-    if (removedSquares == nr * nc) {
-        if (winMoveCount == 0) winMoveCount = model.getMoves()
-
+    if (model.victory()) {
         ctx.fillStyle = 'darkslateblue'
         ctx.fillRect(0, 0, canvasObj.width, canvasObj.height)
 
@@ -87,12 +75,11 @@ export function redrawCanvas(model, canvasObj) {
         ctx.font = 'bold 4em Courier New, monospace'
         let text = 'You Win!'
         ctx.fillText(text, (canvasObj.width / 2) - (ctx.measureText(text).width / 2), 
-        ((canvasObj.height / 2) - ((text1Height + text2Height) / 2)));
+        ((canvasObj.height / 2) - ((text1Height + text2Height) / 2)))
 
         ctx.font = '2em Courier New, monospace'
-        text = 'Solved in ' + winMoveCount + " moves."
+        text = 'Solved in ' + model.getVictoryMoves() + " moves."
         ctx.fillText(text, (canvasObj.width / 2) - (ctx.measureText(text).width / 2),
-        ((canvasObj.height/2) - ((text1Height + text2Height) / 2) + text1Height));
-        winMoveCount = 0
+        ((canvasObj.height/2) - ((text1Height + text2Height) / 2) + text1Height))
     }
 }

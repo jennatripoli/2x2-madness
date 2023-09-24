@@ -90,7 +90,8 @@ export const layout = {
         position: 'relative',
         display: 'block', 
         fontSize: '2em', 
-        fontWeight: 'bold' 
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
     
     movesCount: { 
@@ -102,7 +103,8 @@ export const layout = {
         top: '0.5em', 
         fontSize: '2em', 
         outline: '0.1em dotted white', 
-        borderRadius: '1em' 
+        borderRadius: '1em',
+        textAlign: 'center'
     },
     
     rotateTitle: { 
@@ -112,19 +114,24 @@ export const layout = {
         fontSize: '2em', 
         fontWeight: 'bold' 
     },
-    
+
+    rotateButtons: {
+        textAlign: 'center',
+    },
+
     rotateButton: { 
         position: 'relative', 
-        top: '7em', 
+        top: '6em',
         padding: '0.25em', 
         paddingTop: '0.5em',
-        marginLeft: '0.6em', 
-        marginRight: '0.6em', 
+        marginLeft: '1em', 
+        marginRight: '1em', 
         outline: '0.2em dotted white', 
         border: 'none', 
-        borderRadius: '2em', 
-        width: '4vw', 
-        height: '4vw', 
-        fill: 'white'
-    }
+        borderRadius: '3em', 
+        width: '6vw', 
+        height: '6vw', 
+        fill: 'white',
+        textAlign: 'center'
+    },
 }

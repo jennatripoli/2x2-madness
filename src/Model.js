@@ -5,6 +5,8 @@ const OFFSET = 5
 const RADIUS = 15
 
 let moves = 0
+let removed = 0
+let victoryMoves = 0
 let selectedGroup = null
 
 export class Square {
@@ -27,6 +29,8 @@ export class Square {
     // remove square by setting color to white
     remove() {
         this.color = 'white'
+        this.selected = false
+        removed++
     }
 }
 
@@ -136,6 +140,7 @@ export class Puzzle {
                     }
 
                     selectedGroup = new Group(this.squares[r][c], this.squares[r][c+1], this.squares[r+1][c+1], this.squares[r+1][c], true)
+                    if (selectedGroup.isRemoved()) selectedGroup = null
                 }
             }
         }
@@ -158,6 +163,13 @@ export class Puzzle {
                 this.squares[previousGroup.s3.row][previousGroup.s3.column] = this.squares[previousGroup.s4.row][previousGroup.s4.column] 
                 this.squares[previousGroup.s4.row][previousGroup.s4.column] = temp
             }
+            
+            for (let r = 0; r < this.squares.length; r++) {
+                for (let c = 0; c < this.squares[r].length; c++) {
+                    this.squares[r][c].row = r
+                    this.squares[r][c].column = c
+                }
+            }
         }
     }
 }
@@ -176,4 +188,13 @@ export class Model {
     rotate(direction) { this.puzzle.rotate(direction) }
     getMoves() { return moves }
     setMoves(value) { moves = value }
+    getRemoved() { return removed }
+    setRemoved(r) { removed = r }
+    victory() {
+        if (this.getRemoved() == this.nr * this.nc && victoryMoves == 0) victoryMoves = moves
+        return this.getRemoved() == this.nr * this.nc
+    }
+    getVictoryMoves() { return victoryMoves }
+    setVictoryMoves(m) { victoryMoves = m }
+    getSelectedGroup() { return selectedGroup }
 }
