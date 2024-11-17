@@ -1,2 +1,9 @@
 # 2x2 Madness
-2x2 Madness is a puzzle game with an N x N square grid of squares that may have a color. Within the board, there is a small circle at the center of each 2x2 group of squares. The player can click this circle to select the corresponding group. Groups can be rotated either clockwise or counterclockwise to effectively rotate the colors in the group. If the player selects a group where all of the squares are the same color, the colors in that group will be removed. The goal of the game is to remove all colors from the board.
+
+2x2 Madness is a puzzle game built using JavaScript and React, using an Entity-Boundary-Controller architecture. It features a Canvas object for rendering and JSON-based board configurations for flexible gameplay setup.
+
+The game takes place on an N x N grid, where each square can be assigned a color. At the center of every 2x2 group of squares is a clickable circle that allows players to select and interact with that group. By clicking on a circle, the corresponding 2x2 group can be rotated clockwise or counterclockwise, shifting the positions of the colors within that group. Players must strategically rotate the groups to align colors. When all squares within a selected 2x2 group share the same color, the group is cleared from the board. The ultimate objective is to clear all colored squares, leaving the board empty.
+
+Visit https://jennatripoli.github.io/2x2-madness to play.
+
+Fall 2023 - CS 509 (Design of Software Systems) at Worcester Polytechnic Institute
